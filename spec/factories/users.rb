@@ -1,7 +1,7 @@
 # spec/factories/users.rb
 FactoryBot.define do
   factory :user do
-    name { Faker::name.name }
+    name { Faker::Lorem.word }
     email 'foo@bar.com'
     password 'foobar'
   end
