@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe AuthenticationController, type: :controller do
+RSpec.describe 'AuthenticationController', type: :request do
   # Authentication test suite
   describe "POST /auth/login" do
     # create test user
     let!(:user) { create(:user) }
     # set headers for authorization
-    let(:headers) { valid_headers.except("Authorization") }
+    let(:headers) { valid_headers.except('Authorization') }
     # set test valid and invalid credentials
     let(:valid_credentials) do
       {
@@ -29,7 +29,7 @@ RSpec.describe AuthenticationController, type: :controller do
       before { post "/auth/login", params: valid_credentials, headers: headers }
 
       it "returns an authentication token" do
-        except(json["auth_token"]).not_to be_nil
+        expect(json["auth_token"]).not_to be_nil
       end
     end
 
@@ -38,7 +38,7 @@ RSpec.describe AuthenticationController, type: :controller do
       before { post "/auth/login", params: invalid_credentials, headers: headers }
 
       it "returns a failure message" do
-        except(json["message"]).to match(/Invalid credentials/)
+        expect(json["message"]).to match(/Invalid credentials/)
       end
     end
   end
