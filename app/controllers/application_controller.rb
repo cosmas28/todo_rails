@@ -6,8 +6,6 @@ class ApplicationController < ActionController::API
   before_action :authorize_request
   attr_reader :current_user
 
-  skip_before_action :authorize_request, only: :authenticate
-
   private
 
   # check for valid request token and return user
